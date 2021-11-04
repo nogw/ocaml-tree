@@ -1,0 +1,2 @@
+(** @canonical Lib.Utils *)
+module Utils = Lib__Utils
