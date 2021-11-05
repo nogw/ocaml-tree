@@ -1,4 +1,0 @@
-(executable
- (name main)
- (libraries lib yojson)
- (preprocess (pps ppx_deriving_yojson)))
