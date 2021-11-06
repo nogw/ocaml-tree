@@ -1,3 +1,3 @@
 (executable
  (name main)
- (libraries lib fmt))
+ (libraries lib fmt cmdliner))

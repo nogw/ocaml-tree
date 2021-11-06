@@ -1,3 +1,5 @@
+let green = Fmt.(styled `Green (styled `Bold string))
+let white_bold = Fmt.(styled `White (styled `Bold string))
 let directory = Sys.getcwd ()
 let list_root_files dir = Sys.readdir dir
 
@@ -7,9 +9,6 @@ let rec first_last = function
   | [ e1; e2 ] -> e1, e2
   | e1 :: _ :: r -> first_last (e1 :: r)
 ;;
-
-let green = Fmt.(styled `Green string)
-let white_bold = Fmt.(styled `White (styled `Bold string))
 
 let print_file_or_folder i s f t c =
   match t with
