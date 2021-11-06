@@ -1,22 +1,43 @@
 let directory = Sys.getcwd ()
 let list_root_files dir = Sys.readdir dir
-let rec repeat s n = if n = 0 then "" else s ^ repeat s (n - 1)
 
-(* ["bin","lib","dune-project",".ocamlformat","_build"] *)
+let rec first_last = function
+  | [] -> "", ""
+  | [ e1 ] -> "", e1
+  | [ e1; e2 ] -> e1, e2
+  | e1 :: _ :: r -> first_last (e1 :: r)
+;;
 
-let rec print_dir path ?(tab = 0) dir =
+let green = Fmt.(styled `Green string)
+let white_bold = Fmt.(styled `White (styled `Bold string))
+
+let print_file_or_folder i s f t c =
+  match t with
+  | `Folder ->
+    if c = true then Fmt.pr "%s%s %a\n" i s white_bold f else Fmt.pr "%s%s %s\n" i s f
+  | `File -> if c = true then Fmt.pr "%s%s %a\n" i s green f else Fmt.pr "%s%s %s\n" i s f
+;;
+
+let rec folder_tree path ?(ident = "") ?(colors = false) dir =
   let is_dir file =
-    let path' = path ^ "/" ^ file in
+    let is_last = snd (first_last dir) = file in
+    let symbol = if is_last then "└──" else "├──"
+    and ident' = if is_last then "    " else "│   "
+    and path' = path ^ "/" ^ file in
     match Sys.is_directory path' with
     | true ->
-      Printf.printf "%s└── %s\n" (repeat "   " tab) file;
-      print_dir path' ~tab:(succ tab) (list_root_files path' |> Array.to_list)
-    | false -> Printf.printf "%s└── %s\n" (repeat "   " tab) file
+      print_file_or_folder ident symbol file `Folder colors;
+      folder_tree
+        path'
+        ~ident:(ident ^ ident')
+        (list_root_files path' |> Array.to_list)
+        ~colors
+    | false -> print_file_or_folder ident symbol file `File colors
   in
   match dir with
-  | [] -> exit 0
+  | [] -> ()
   | [ head ] -> is_dir head
   | head :: tail ->
     is_dir head;
-    print_dir path ~tab tail
+    folder_tree path ~ident tail ~colors
 ;;

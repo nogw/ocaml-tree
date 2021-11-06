@@ -1,5 +1,4 @@
 (library
  (name lib)
- (libraries yojson)
- (preprocess (pps ppx_deriving_yojson)))
+ (libraries fmt))
  ; (libraries unix))
