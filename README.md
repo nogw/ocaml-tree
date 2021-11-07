@@ -25,7 +25,7 @@ a simple pretty-print tree structure folder
 
 ---
 
-## usage
+## Installation
 
 ```
 git clone https://github.com/nogw/ocaml-tree
@@ -35,4 +35,23 @@ cd _build/default/bin
 chmod u+x tree.exe
 sudo mv tree.exe /usr/local/bin/
 tree.exe
+```
+
+---
+
+## Usage
+
+print current directory: <br/>
+```tree.exe```
+
+print current directory with colors <br/>
+```tree.exe -c```
+
+imprimir outro diretório sem abri-lo
+```
+tree.exe -c -p "../../Desktop
+or
+tree.exe -c --path="../../Desktop
+
+(flag "c" is optional)
 ```
