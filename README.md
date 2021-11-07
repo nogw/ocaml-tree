@@ -33,8 +33,9 @@ cd ocaml-tree
 dune build
 cd _build/default/bin
 chmod u+x tree.exe
-sudo mv tree.exe /usr/local/bin/
-tree.exe
+sudo mv tree.exe tree
+sudo mv tree /usr/local/bin/
+tree
 ```
 
 ---
@@ -42,16 +43,16 @@ tree.exe
 ## Usage
 
 print current directory: <br/>
-```tree.exe```
+```tree```
 
 print current directory with colors <br/>
-```tree.exe -c```
+```tree -c```
 
 imprimir outro diretório sem abri-lo
 ```
-tree.exe -c -p "../../Desktop
+tree -c -p "../../Desktop
 or
-tree.exe -c --path="../../Desktop
+tree -c --path="../../Desktop
 
 (flag "c" is optional)
 ```
