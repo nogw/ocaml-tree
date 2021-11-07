@@ -48,7 +48,16 @@ print current directory: <br/>
 print current directory with colors <br/>
 ```tree -c```
 
-imprimir outro diretório sem abri-lo
+ignore folders or files <br/>
+```
+tree -i "_build,.git"
+or
+tree --ignore="_build,.git"
+
+(files must be out of space)
+```
+
+print another directory without opening it 
 ```
 tree -c -p "../../Desktop
 or

@@ -17,7 +17,7 @@ let print_file_or_folder i s f t c =
   | `File -> if c = true then Fmt.pr "%s%s %a\n" i s green f else Fmt.pr "%s%s %s\n" i s f
 ;;
 
-let rec folder_tree path ?(ident = "") ?(colors = false) dir =
+let rec folder_tree path ?(ident = "") ?(colors = false) ?(ignore = []) dir =
   let is_dir file =
     let is_last = snd (first_last dir) = file in
     let symbol = if is_last then "└──" else "├──"
@@ -31,6 +31,7 @@ let rec folder_tree path ?(ident = "") ?(colors = false) dir =
         ~ident:(ident ^ ident')
         (list_root_files path' |> Array.to_list)
         ~colors
+        ~ignore
     | false -> print_file_or_folder ident symbol file `File colors
   in
   match dir with
@@ -38,5 +39,5 @@ let rec folder_tree path ?(ident = "") ?(colors = false) dir =
   | [ head ] -> is_dir head
   | head :: tail ->
     is_dir head;
-    folder_tree path ~ident tail ~colors
+    folder_tree path ~ident ~colors ~ignore tail
 ;;
