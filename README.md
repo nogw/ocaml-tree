@@ -22,3 +22,17 @@ a simple pretty-print tree structure folder
 │                       └── teste
 └── dune-project
 ```
+
+---
+
+## usage
+
+```
+git clone https://github.com/nogw/ocaml-tree
+cd ocaml-tree
+dune build
+cd _build/default/bin
+chmod u+x tree.exe
+sudo mv tree.exe /usr/local/bin/
+tree.exe
+```

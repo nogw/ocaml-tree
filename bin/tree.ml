@@ -16,6 +16,6 @@ let cmdliner_term =
 
 let () =
   Fmt.set_utf_8 Fmt.stdout true;
-  Fmt.set_style_renderer Fmt.stdout `Ansi_tty
-in
-Term.exit @@ Term.eval (cmdliner_term, Term.info "ocaml-tree")
+  Fmt.set_style_renderer Fmt.stdout `Ansi_tty;
+  Term.exit @@ Term.eval (cmdliner_term, Term.info "tree")
+;;
