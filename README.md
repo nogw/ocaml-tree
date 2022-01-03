@@ -35,6 +35,8 @@ cd _build/default/bin
 chmod u+x tree.exe
 sudo mv tree.exe tree
 sudo mv tree /usr/local/bin/
+cd ../../../..
+rm -rf ocaml-tree
 tree
 ```
 
