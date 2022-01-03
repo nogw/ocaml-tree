@@ -53,7 +53,7 @@ print current directory with colors <br/>
 ignore folders or files <br/>
 ```
 tree -i "_build,.git"
-or
+---
 tree --ignore="_build,.git"
 
 (files must be out of space)
@@ -62,7 +62,7 @@ tree --ignore="_build,.git"
 print another directory without opening it 
 ```
 tree -c -p "../../Desktop
-or
+--- 
 tree -c --path="../../Desktop
 
 (flag "c" is optional)
