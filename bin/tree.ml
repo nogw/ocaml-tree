@@ -16,8 +16,6 @@ let ignore =
   Arg.value (Arg.opt (Arg.some (Arg.list Arg.string)) None info)
 ;;
 
-let filter list list' = list |> List.filter (fun i -> not (List.mem i list'))
-
 let cmdliner_term =
   let tree c p i =
     let path =
@@ -25,13 +23,15 @@ let cmdliner_term =
       | None -> Utils.directory
       | Some p -> p
     in
-    let files p =
-      let files' = p |> Utils.list_root_files |> Array.to_list in
+    let ignore =
       match i with
-      | None -> files'
-      | Some l -> filter files' l
+      | None -> []
+      | Some li -> li
     in
-    path |> files |> Utils.folder_tree path ~colors:c
+    path
+    |> Utils.list_root_files
+    |> Array.to_list
+    |> fun ls -> Utils.filter ls ignore |> Utils.folder_tree path ~colors:c ~ignore
   in
   Term.(const tree $ colors $ path $ ignore)
 ;;
