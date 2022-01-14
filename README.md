@@ -37,7 +37,7 @@ sudo mv tree.exe tree
 sudo mv tree /usr/local/bin/
 cd ../../../..
 rm -rf ocaml-tree
-tree
+echo "SUCCESSFUL!"
 ```
 
 ---
